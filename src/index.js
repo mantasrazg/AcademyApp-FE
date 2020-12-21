@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Routes from "./Routes";
-import { AuthProvider } from "./context/AuthContextƒ";
+import { AuthProvider } from "./context/AuthContext";
 import "normalize.css";
 import GlobalStyle from "./globalStyle";
 import { ThemeProvider } from "styled-components";
