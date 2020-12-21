@@ -6,7 +6,6 @@ import { Header, Loading, PrivateRoute } from "./components";
 import Login from "./pages/Login/Login";
 
 const HomeLazy = lazy(() => import("./pages/Home/Home"));
-
 const StudentsLazy = lazy(() => import("./pages/Students/Students"));
 const AddStudentLazy = lazy(() => import("./pages/AddStudent/AddStudent"));
 const LecturersLazy = lazy(() => import("./pages/Lecturers/Lecturers"));
@@ -28,7 +27,12 @@ function Routes() {
       <Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={HomeLazy} />
+          <PrivateRoute
+            exact
+            path="/"
+            component={HomeLazy}
+            redirectPath="/login"
+          />
           <PrivateRoute
             exact
             path="/students"
