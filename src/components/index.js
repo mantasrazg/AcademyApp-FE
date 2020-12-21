@@ -5,3 +5,4 @@ export { default as Loading } from "./Loading/Loading";
 export { default as InputField } from "./InputField/InputField";
 export { default as Form } from "./Form/Form";
 export { default as Notification } from "./Notification/Notification";
+export { default as PrivateRoute } from "./PrivateRoute/PrivateRoute";
