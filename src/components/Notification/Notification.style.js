@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const NotificationBox = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding: 0.8rem;
+  padding: 0.8rem 2rem;
+  border-radius: 2px;
   color: ${(props) => props.theme.primary.color};
   background-color: ${(props) =>
     props.type === "error" ? "rgb(255, 104, 87)" : "rgb(162, 222, 153)"};

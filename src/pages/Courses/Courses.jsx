@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Section } from "../../components";
+import * as S from "./Courses.style";
 
 function Courses() {
   const [coursesList, setCoursesList] = useState([]);
@@ -12,31 +13,33 @@ function Courses() {
 
   return (
     <Section>
-      <table>
-        <thead>
-          <tr>
-            <th>Course Name</th>
-            <th>Course Description</th>
-            <th>Lecturer</th>
-          </tr>
-        </thead>
-        <tbody>
-          {coursesList &&
-            coursesList.map((course) => (
-              <tr key={course.id}>
-                <td>
-                  <span>{course.name}</span>
-                </td>
-                <td>
-                  <span>{course.description}</span>
-                </td>
-                <td>
-                  <span>{course.lecturer_id}</span>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      <Section>
+        <S.Table>
+          <S.THead>
+            <S.Row>
+              <S.HeadData>Course Name</S.HeadData>
+              <S.HeadData>Course Description</S.HeadData>
+              <S.HeadData>Delete Course</S.HeadData>
+            </S.Row>
+          </S.THead>
+          <S.TBody>
+            {coursesList &&
+              coursesList.map((course) => (
+                <S.Row key={course.id}>
+                  <S.Data>
+                    <span>{course.name}</span>
+                  </S.Data>
+                  <S.Data>
+                    <span>{course.description}</span>
+                  </S.Data>
+                  <S.Data>
+                    <span>Delete</span>
+                  </S.Data>
+                </S.Row>
+              ))}
+          </S.TBody>
+        </S.Table>
+      </Section>
     </Section>
   );
 }
