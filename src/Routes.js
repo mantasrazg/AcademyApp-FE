@@ -9,6 +9,8 @@ const HomeLazy = lazy(() => import("./pages/Home/Home"));
 const AboutLazy = lazy(() => import("./pages/About/About"));
 const StudentsLazy = lazy(() => import("./pages/Students/Students"));
 const AddStudentLazy = lazy(() => import("./pages/AddStudent/AddStudent"));
+const CoursesLazy = lazy(() => import("./pages/Courses/Courses"));
+const AddCourseLazy = lazy(() => import("./pages/AddCourse/AddCourse"));
 
 function Routes() {
   const authFunc = useContext(AuthContext);
@@ -36,6 +38,18 @@ function Routes() {
             exact
             path="/add-student"
             component={AddStudentLazy}
+            redirectPath="/login"
+          />
+          <PrivateRoute
+            exact
+            path="/courses"
+            component={CoursesLazy}
+            redirectPath="/login"
+          />
+          <PrivateRoute
+            exact
+            path="/add-course"
+            component={AddCourseLazy}
             redirectPath="/login"
           />
         </Switch>
