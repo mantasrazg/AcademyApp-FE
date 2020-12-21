@@ -9,6 +9,8 @@ const HomeLazy = lazy(() => import("./pages/Home/Home"));
 const AboutLazy = lazy(() => import("./pages/About/About"));
 const StudentsLazy = lazy(() => import("./pages/Students/Students"));
 const AddStudentLazy = lazy(() => import("./pages/AddStudent/AddStudent"));
+const LecturersLazy = lazy(() => import("./pages/Lecturers/Lecturers"));
+const AddLecturerLazy = lazy(() => import("./pages/AddLecturer/AddLecturer"));
 const CoursesLazy = lazy(() => import("./pages/Courses/Courses"));
 const AddCourseLazy = lazy(() => import("./pages/AddCourse/AddCourse"));
 
@@ -38,6 +40,18 @@ function Routes() {
             exact
             path="/add-student"
             component={AddStudentLazy}
+            redirectPath="/login"
+          />
+          <PrivateRoute
+            exact
+            path="/lecturers"
+            component={LecturersLazy}
+            redirectPath="/login"
+          />
+          <PrivateRoute
+            exact
+            path="/add-lecturer"
+            component={AddLecturerLazy}
             redirectPath="/login"
           />
           <PrivateRoute
