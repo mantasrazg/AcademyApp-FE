@@ -18,7 +18,9 @@ function Header({ loggedIn, logout }) {
             <S.StyledLink to="/students">Students</S.StyledLink>
             <S.StyledLink to="/lecturers">Lecturers</S.StyledLink>
             <S.StyledLink to="/courses">Courses</S.StyledLink>
-            <S.StyledLink onClick={logout}>Logout</S.StyledLink>
+            <S.StyledLink to="/login" onClick={logout}>
+              Logout
+            </S.StyledLink>
           </>
         )}
       </S.Actions>
