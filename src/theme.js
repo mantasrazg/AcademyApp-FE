@@ -6,7 +6,7 @@ const theme = {
   },
   secondary: {
     color: "rgb(255, 255, 255)",
-    background: "rgb(110, 110, 110,",
+    background: "rgb(110, 110, 110)",
     hoverBackground: "rgb(181, 181, 181)",
   },
 };
