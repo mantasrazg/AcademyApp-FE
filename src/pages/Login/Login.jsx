@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import LoginFormInputs from "../../utils/LoginFormInputs";
-import { Section, Form } from "../../components";
+import { Section, Form, Notification } from "../../components";
 
-function userLogin(data, context, history) {
+function userLogin(data, context, history, error, setError, setNotification) {
   fetch("http://127.0.0.1:8080/login", {
     method: "POST",
     headers: {
@@ -12,27 +12,59 @@ function userLogin(data, context, history) {
     },
     body: JSON.stringify(data),
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        error = true;
+        setNotification("error");
+      } else {
+        error = false;
+      }
+      return res.json();
+    })
     .then((data) => {
-      if (data.token) {
+      if (error) {
+        setError("Error!");
+      } else {
         context.setToken(data.token);
         history.push("/");
       }
+    })
+    .catch((error) => {
+      setError("Error");
+      setNotification("error");
     });
 }
 
 function Login() {
   const history = useHistory();
-  const authContext = useContext(AuthContext);
+  const auth = useContext(AuthContext);
+  const [error, setError] = useState();
+  const [notification, setNotification] = useState();
 
   return (
-    <Section>
-      <Form
-        inputs={LoginFormInputs}
-        callbackFunc={(loginData) => userLogin(loginData, authContext, history)}
-        buttonText="Login"
-      />
-    </Section>
+    <>
+      {error && (
+        <Section>
+          <Notification type={notification} message={error} />
+        </Section>
+      )}
+      <Section>
+        <Form
+          inputs={LoginFormInputs}
+          callbackFunc={(loginData) =>
+            userLogin(
+              loginData,
+              auth,
+              history,
+              error,
+              setError,
+              setNotification
+            )
+          }
+          buttonText="Login"
+        />
+      </Section>
+    </>
   );
 }
 
