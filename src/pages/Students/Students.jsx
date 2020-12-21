@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Section } from "../../components";
+import * as S from "./Students.style";
 
 function Students() {
   const [studentsList, setStudentsList] = useState([]);
@@ -12,27 +13,27 @@ function Students() {
 
   return (
     <Section>
-      <table>
-        <thead>
-          <tr>
-            <th>Student Name</th>
-            <th>Delete Student</th>
-          </tr>
-        </thead>
-        <tbody>
+      <S.Table>
+        <S.THead>
+          <S.Row>
+            <S.HeadData>Student Name</S.HeadData>
+            <S.HeadData>Delete Student</S.HeadData>
+          </S.Row>
+        </S.THead>
+        <S.TBody>
           {studentsList &&
             studentsList.map((student) => (
-              <tr key={student.id}>
-                <td>
+              <S.Row key={student.id}>
+                <S.Data>
                   <span>{student.name + " " + student.surname}</span>
-                </td>
-                <td>
+                </S.Data>
+                <S.Data>
                   <span>Delete</span>
-                </td>
-              </tr>
+                </S.Data>
+              </S.Row>
             ))}
-        </tbody>
-      </table>
+        </S.TBody>
+      </S.Table>
     </Section>
   );
 }

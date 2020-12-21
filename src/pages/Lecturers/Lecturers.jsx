@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Section } from "../../components";
+import * as S from "./Lecturers.style";
 
 function Lecturers() {
   const [lecturersList, setLecturersList] = useState([]);
@@ -12,27 +13,27 @@ function Lecturers() {
 
   return (
     <Section>
-      <table>
-        <thead>
-          <tr>
-            <th>Lecturer Name</th>
-            <th>Delete Student</th>
-          </tr>
-        </thead>
-        <tbody>
+      <S.Table>
+        <S.THead>
+          <S.Row>
+            <S.HeadData>Student Name</S.HeadData>
+            <S.HeadData>Delete Student</S.HeadData>
+          </S.Row>
+        </S.THead>
+        <S.TBody>
           {lecturersList &&
             lecturersList.map((lecturer) => (
-              <tr key={lecturer.id}>
-                <td>
+              <S.Row key={lecturer.id}>
+                <S.Data>
                   <span>{lecturer.name + " " + lecturer.surname}</span>
-                </td>
-                <td>
+                </S.Data>
+                <S.Data>
                   <span>Delete</span>
-                </td>
-              </tr>
+                </S.Data>
+              </S.Row>
             ))}
-        </tbody>
-      </table>
+        </S.TBody>
+      </S.Table>
     </Section>
   );
 }
