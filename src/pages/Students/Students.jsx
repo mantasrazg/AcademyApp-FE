@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Section } from "../../components";
+import { AuthContext } from "../../context/AuthContext";
 import * as S from "./Students.style";
 
 function Students() {
   const [studentsList, setStudentsList] = useState([]);
+  const auth = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8080/students")
+    fetch("http://127.0.0.1:8080/students", {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setStudentsList(data));
   });
