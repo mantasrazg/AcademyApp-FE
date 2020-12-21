@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Header, Loading } from "./components";
+import { Header, Loading, PrivateRoute } from "./components";
 import Login from "./pages/Login/Login";
 
 const HomeLazy = lazy(() => import("./pages/Home/Home"));
@@ -17,7 +17,12 @@ function Routes() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={HomeLazy} />
           <Route exact path="/about" component={AboutLazy} />
-          <Route exact path="/add-student" component={AddStudentLazy} />
+          <PrivateRoute
+            exact
+            path="/add-student"
+            component={AddStudentLazy}
+            redirectPath="/login"
+          />
         </Switch>
       </Suspense>
     </Router>
